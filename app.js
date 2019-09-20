@@ -28,7 +28,7 @@ app.get('/api/trigger',(req,res)=>{
 
 app.post('/api/trigger',(req,res)=>{
   // Publisher
-  console.log("Rabbit MQ triggered ")
+  console.log("Rabbit MQ triggered by git ")
   open.then(function(conn) {
     return conn.createChannel();
   }).then(function(ch) {
