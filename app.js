@@ -33,7 +33,7 @@ app.post('/api/trigger',(req,res)=>{
     return conn.createChannel();
   }).then(function(ch) {
     return ch.assertQueue(q).then(function(ok) {
-      return ch.sendToQueue(q, Buffer.from('DATA',JSON.stringfy(req.body)))
+      return ch.sendToQueue(q, Buffer.from('DATA',JSON.stringify(req.body)))
     });
   }).catch(console.warn);
   res.send({message:"ok"})
