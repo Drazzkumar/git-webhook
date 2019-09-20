@@ -1,8 +1,20 @@
 {
   "name": "rabbitmq-githubwebhook",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "description": "Github webhook client",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "webhook",
+    "heroku"
+  ],
+  "author": "razzkumar",
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "amqplib": "^0.5.5",
     "express": "^4.17.1"
