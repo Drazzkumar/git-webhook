@@ -12,6 +12,7 @@ const APP_PORT =
   (process.env.NODE_ENV === 'test' ? process.env.TEST_APP_PORT : process.env.APP_PORT) || process.env.PORT || '3000';
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/api/trigger',(req,res)=>{
   // Publisher
@@ -28,12 +29,12 @@ app.get('/api/trigger',(req,res)=>{
 
 app.post('/api/trigger',(req,res)=>{
   // Publisher
-  console.log("Rabbit MQ triggered by git ")
+  console.log("Rabbit MQ triggered by git ",req.body)
   open.then(function(conn) {
     return conn.createChannel();
   }).then(function(ch) {
     return ch.assertQueue(q).then(function(ok) {
-      return ch.sendToQueue(q, Buffer.from('DATA',JSON.stringify(req.body)))
+      return ch.sendToQueue(q, Buffer.from('DATA'+JSON.stringify(req.body)))
     });
   }).catch(console.warn);
   res.send({message:"ok"})
